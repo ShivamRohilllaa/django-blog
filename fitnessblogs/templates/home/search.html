@@ -1,0 +1,35 @@
+{% extends 'home/base.html' %}
+{% block title %} Blogs
+{% endblock%}
+{% block css %}
+.head{padding-top:30px; text-align:center; padding-bottom:30px;}
+{% endblock %}
+{% block body %}
+<div class="container">
+<div class="row">   
+<div class="col-lg-12 col-md-12 head">
+<h1>Your Results:-</h1>
+</div>
+{% if allPosts|length < 1  %}
+<p>Your Search - <b>{{query}}</b>- did not match any documents.</p>
+<ul>Suggestion<li>Make sure that all words are spelled correctly.</li>
+<li>Try different keywords.</li>
+<li>Try more general keywords.</li>
+</ul>
+{% endif %}
+{% for post in allPosts %}
+<div class="col-lg-4 col-md-6">
+<div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h6 style="color:blue;">{{post.author}}</h6>
+    <h5 class="card-title">{{post.post_title}}</h5>
+    <p class="card-text">{{post.post_content | truncatechars:100}}</p>
+    <a href="/blog/{{post.slug}}" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+</div>
+{% endfor %}
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'blog/base.html' %}
+{% block title %} Blogs
+{% endblock%}
+{% block css %}
+.head{padding-top:30px; text-align:center; padding-bottom:30px;}
+{% endblock %}
+{% block body %}
+{% load static %}
+<div class="container">
+<div class="row">   
+<div class="col-lg-12 col-md-12 head">
+<h1>Read Our Latest Blogs</h1>
+</div>
+{% for post in allPosts %}
+<div class="col-lg-4 col-md-6" style="padding-top:20px;">
+<div class="card" style="width: 18rem;">
+  <img src="/media/{{post.image}}" class="card-img-top" style="width:100%; height:auto;">
+  <div class="card-body">
+    <h6 style="color:blue;">{{post.author}}</h6>
+    <h5 class="card-title"><a href="/blog/{{post.slug}}">{{post.post_title}}</a></h5>
+    <p class="card-text">{{post.post_content |safe|truncatechars:100}}</p>
+    <a href="/blog/{{post.slug}}" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+</div>
+{% endfor %}
+</div>
+</div>
+{% endblock %}
